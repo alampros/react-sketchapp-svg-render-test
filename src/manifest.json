@@ -1,0 +1,20 @@
+{
+  "author": "Aaron Lampros",
+  "version": 0.1,
+  "compatibleVersion": 1,
+  "bundleVersion": 1,
+  "disableCocoaScriptPreprocessor": true,
+  "commands": [
+    {
+      "name": "react-sketchapp: SVG Render Performance Test",
+      "identifier": "renderIcons",
+      "script": "main.js"
+    }
+  ],
+  "menu": {
+    "isRoot": true,
+    "items": [
+      "renderIcons"
+    ]
+  }
+}

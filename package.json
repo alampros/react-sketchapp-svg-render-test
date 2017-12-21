@@ -1,0 +1,98 @@
+{
+  "name": "react-sketchapp-svg-render-test",
+  "version": "1.0.0",
+  "description": "Test render performance of importing SVG assets",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alampros/react-sketchapp-svg-render-test.git"
+  },
+  "author": "Aaron Lampros (https://github.com/alampros)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alampros/react-sketchapp-svg-render-test/issues"
+  },
+  "homepage": "https://github.com/alampros/react-sketchapp-svg-render-test#readme",
+  "private": true,
+  "skpm": {
+    "main": "svg-render-test.sketchplugin",
+    "name": "SVG Render Test",
+    "manifest": "src/manifest.json"
+  },
+  "scripts": {
+    "build": "skpm-build",
+    "prebuild": "yarn generate-imports",
+    "generate-imports": "babel-node scripts/generateImports.js",
+    "render": "yarn render-small",
+    "render-small": "SVG_LIMIT=10 yarn build --run",
+    "render-large": "SVG_LIMIT=100 yarn build --run",
+    "render-all": "yarn build --run",
+    "develop": "yarn render --watch",
+    "link": "skpm-link",
+    "prelink": "yarn build",
+    "postinstall": "yarn run link",
+    "clean": "git clean -xfd -e node_modules"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.5.10",
+    "react": "^15.x.x"
+  },
+  "dependencies": {
+    "@skpm/builder": "^0.2.10",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-plugin-react-sketchapp-svg": "^1.0.0-beta4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "camelcase": "^4.1.0",
+    "capitalize": "^1.0.0",
+    "cheerio": "^1.0.0-rc.2",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-config-dealertire-react": "^2.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-sorting": "^0.3.0",
+    "fs-extra": "^5.0.0",
+    "react": "^16.2.0",
+    "react-sketchapp": "^1.0.0",
+    "react-test-renderer": "^16.2.0"
+  },
+  "babel": {
+    "plugins": [
+      "transform-class-properties",
+      [
+        "babel-plugin-react-sketchapp-svg",
+        {
+          "defaultHeight": 16,
+          "defaultWidth": 16
+        }
+      ]
+    ],
+    "presets": [
+      "env",
+      "react",
+      "stage-0"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "babel-eslint",
+    "extends": "dealertire-react",
+    "rules": {
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "react/prefer-stateless-function": 0
+    }
+  }
+}
