@@ -73,7 +73,7 @@ function getImportsBody({ importsObjs }) {
   _s += '\n\nconst allIcons = {\n  '
 
   _s += importsObjs.map(({ componentName, iconId }) => {
-    return `'${iconId}': makeSymbol(${componentName}, 'Icon / ${iconId}')`
+    return `'${iconId}': ${componentName}`
   }).join(',\n  ') + ',\n'
 
   _s += '}\n'

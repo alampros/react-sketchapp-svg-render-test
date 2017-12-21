@@ -1,21 +1,20 @@
 import React from 'react'
-import { Document, Page, Text, render } from 'react-sketchapp'
-import './allIcons.js'
+import { Document, Page, View, render } from 'react-sketchapp'
+import IconContainer from './IconContainer.js'
+import allIcons from './allIcons.js'
 
 const IconsPage = () => {
+  const $icons = Object.keys(allIcons).map(iconId => {
+    return (
+      <IconContainer key={iconId} iconConstructor={allIcons[iconId]} />
+    )
+  })
   return (
     <Document>
-      <Page name="Nothing to see here">
-        <Text
-          style={{
-            fontFamily: 'Helvetica',
-            fontSize: 32,
-            fontWeight: 'bold',
-            fontColor: '#000',
-          }}
-        >
-          See the symbols page
-        </Text>
+      <Page name="Icons">
+        <View>
+          {$icons}
+        </View>
       </Page>
     </Document>
   )
