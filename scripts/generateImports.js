@@ -71,6 +71,8 @@ function getImportsBody({ importsObjs }) {
     return `import ${componentName} from '${importPath}'`
   }).join('\n')
 
+  _s += `\n\nexport const useSymbols = ${ICONS_SKETCH_MAKE_SYMBOLS}`
+
   _s += '\n\nconst allIcons = {\n  '
 
   _s += importsObjs.map(({ componentName, iconId }) => {

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Document, Page, Artboard, View, Text, render } from 'react-sketchapp'
 import pkg from '../package.json'
-import allIcons from './allIcons.js'
+import allIcons, { useSymbols } from './allIcons.js'
 
 const IconsPage = () => {
   const $icons = Object.keys(allIcons).map(iconMemberName => {
-    const iconProps = { name: 'Icon' }
+    const iconProps = { name: 'Icon', width: 50, height: 50 }
     const IconFactory = allIcons[iconMemberName]
     // Exports are factory classes if ICONS_SKETCH_MAKE_SYMBOLS is true, but elements if not
     const $icon = React.isValidElement(IconFactory)
@@ -41,16 +41,18 @@ const IconsPage = () => {
     <Document>
       <Page name={pkg.name}>
         <View name="Header" style={{ left: 20, top: 20 }}>
-          <Text
-            style={{
-              fontFamily: 'Helvetica',
-              fontSize: 32,
-              fontWeight: 'bold',
-              color: '#000',
-            }}
-          >
-            ↖︎ See the symbols page
-          </Text>
+          {useSymbols && (
+            <Text
+              style={{
+                fontFamily: 'Helvetica',
+                fontSize: 32,
+                fontWeight: 'bold',
+                color: '#000',
+              }}
+            >
+              ↖︎ See the symbols page
+            </Text>
+          )}
           <Text
             style={{
               fontFamily: 'Consolas',
