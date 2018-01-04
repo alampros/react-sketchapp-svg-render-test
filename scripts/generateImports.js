@@ -5,8 +5,9 @@ import capitalize from 'capitalize'
 import cheerio from 'cheerio'
 import glob from 'glob'
 
-const SVG_LIMIT = parseInt(process.env.SVG_LIMIT, 10) || undefined
-const SVG_GLOB = process.env.SVG_GLOB || '*.svg'
+const ICONS_SKETCH_MAKE_SYMBOLS = process.env.ICONS_SKETCH_MAKE_SYMBOLS === 'true' || false
+const ICONS_SKETCH_SVG_LIMIT = parseInt(process.env.ICONS_SKETCH_SVG_LIMIT, 10) || undefined
+const ICONS_SKETCH_SVG_GLOB = process.env.ICONS_SKETCH_SVG_GLOB || '*.svg'
 
 const dirs = {
   src: 'svg-src',
@@ -36,9 +37,9 @@ function getSVGs(baseDir) {
   if(!Object.hasOwnProperty.call(dirs, baseDir)) {
     throw new Error(`Unknown base directory. Must be one of ${JSON.stringify(Object.keys(dirs))}`)
   }
-  const svgs = glob.sync(`${dirs[baseDir]}/${SVG_GLOB}`)
-  if(typeof SVG_LIMIT === 'number' && SVG_LIMIT >= 0) {
-    return svgs.slice(0, SVG_LIMIT)
+  const svgs = glob.sync(`${dirs[baseDir]}/${ICONS_SKETCH_SVG_GLOB}`)
+  if(typeof ICONS_SKETCH_SVG_LIMIT === 'number' && ICONS_SKETCH_SVG_LIMIT >= 0) {
+    return svgs.slice(0, ICONS_SKETCH_SVG_LIMIT)
   }
   return svgs
 }
@@ -73,7 +74,10 @@ function getImportsBody({ importsObjs }) {
   _s += '\n\nconst allIcons = {\n  '
 
   _s += importsObjs.map(({ componentName, iconId }) => {
-    return `'${iconId}': makeSymbol(${componentName}, 'Icon / ${iconId}')`
+    if(ICONS_SKETCH_MAKE_SYMBOLS) {
+      return `'${iconId}': makeSymbol(${componentName}, 'Icon / ${iconId}')`
+    }
+    return `'${iconId}': <${componentName} />`
   }).join(',\n  ') + ',\n'
 
   _s += '}\n'
