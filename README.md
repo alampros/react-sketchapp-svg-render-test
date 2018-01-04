@@ -1,6 +1,12 @@
 # react-sketchapp-svg-render-test
 Test render performance of importing SVG assets
 
+# Testing [PR#235](https://github.com/airbnb/react-sketchapp/pull/235)
+
+This branch is configured to test this PR: https://github.com/airbnb/react-sketchapp/pull/235
+
+**Be sure to re-run `yarn` after checking out** to install the PR branch.
+
 # Setup Scripts
 
 | npm script | description                                              |

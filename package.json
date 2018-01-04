@@ -35,7 +35,8 @@
     "develop": "yarn render --watch",
     "link": "skpm-link",
     "prelink": "yarn build",
-    "postinstall": "yarn run link",
+    "postinstall": "yarn build-pr && yarn run link",
+    "build-pr": "cd node_modules/react-sketchapp; yarn; yarn run build",
     "clean": "git clean -xfd -e node_modules"
   },
   "peerDependencies": {
@@ -63,7 +64,7 @@
     "eslint-plugin-sorting": "^0.3.0",
     "fs-extra": "^5.0.0",
     "react": "^16.2.0",
-    "react-sketchapp": "^1.0.0",
+    "react-sketchapp": "airbnb/react-sketchapp#235/head",
     "react-test-renderer": "^16.2.0"
   },
   "babel": {

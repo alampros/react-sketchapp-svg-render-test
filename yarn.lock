@@ -3606,9 +3606,9 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-sketchapp@^1.0.0:
+react-sketchapp@airbnb/react-sketchapp#235/head:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-sketchapp/-/react-sketchapp-1.0.0.tgz#46f42a84d0453faedbe85d9aad813481cd1661d1"
+  resolved "https://codeload.github.com/airbnb/react-sketchapp/tar.gz/2a143bdf0a7c6649e35979d5c5fce976dc72a537"
   dependencies:
     error-stack-parser "^2.0.0"
     invariant "^2.2.2"
